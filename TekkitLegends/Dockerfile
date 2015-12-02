@@ -17,7 +17,7 @@ RUN apt-get --yes clean
 
 
 ADD . /minecraftserver
-RUN wget -O /minecraftserver/legends_server.zip http://servers.technicpack.net/Technic/servers/tekkit-legends/Tekkit_Legends_Server_v1.0.10.zip 
+RUN wget -O /minecraftserver/legends_server.zip http://servers.technicpack.net/Technic/servers/tekkit-legends/Tekkit_Legends_Server_v1.1.0.zip 
 RUN cd /minecraftserver && unzip legends_server.zip
 RUN rm -rf legends_server.zip
 
@@ -27,4 +27,7 @@ ENV JVM_OPTS -Xmx2G -Xms1G
 Volume /minecraftserver/world
 WORKDIR /minecraftserver
 
-CMD java $JVMP_OPTS -jar "TekkitLegends.jar" nogui 
+#RUN groupadd -r minecraft && useradd -r -g minecraft minecraft
+#RUN chown -R minecraft:minecraft /minecraftserver
+#USER minecraft
+CMD java $JVM_OPTS -jar "TekkitLegends.jar" nogui 
