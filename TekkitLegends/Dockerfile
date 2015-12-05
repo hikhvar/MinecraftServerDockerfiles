@@ -23,11 +23,9 @@ RUN rm -rf legends_server.zip
 
 #Expose default port
 EXPOSE 25565
-ENV JVM_OPTS -Xmx2G -Xms1G 
+ENV JVM_OPTS -Xmx5G -Xms1G 
 Volume /minecraftserver/world
 WORKDIR /minecraftserver
+RUN chmod -R 777 /minecraftserver
 
-#RUN groupadd -r minecraft && useradd -r -g minecraft minecraft
-#RUN chown -R minecraft:minecraft /minecraftserver
-#USER minecraft
 CMD java $JVM_OPTS -jar "TekkitLegends.jar" nogui 
